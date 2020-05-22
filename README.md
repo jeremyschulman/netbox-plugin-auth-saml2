@@ -52,9 +52,11 @@ PLUGINS_CONFIG = {
 
 # Setup New URLs
 
-Unfortunately there is no way to dynamically change the ROOT_URLCONF.urlpatterns for Netbox; and
-this is by design.  The only way is to make a copy of the existing netbox/urls.py file and add
-the following changes at the bottom of the file:
+Unfortunately there is no way to dynamically change the
+ROOT_URLCONF.urlpatterns for Netbox; and this is by design.  The only way is to
+make a copy of the existing netbox/urls.py file and add the following changes
+at the bottom of the file.  You can change (2) the "SSO" URL to be different
+based on your Okta app configuration.
 
 ```python
 # -----------------------------------------------------------------------------
