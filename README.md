@@ -52,5 +52,26 @@ PLUGINS_CONFIG = {
 
 # Setup New URLs
 
+Unfortunately there is no way to dynamically change the ROOT_URLCONF.urlpatterns for Netbox; and
+this is by design.  The only way is to make a copy of the existing netbox/urls.py file and add
+the following changes at the bottom of the file:
 
+```python
+# -----------------------------------------------------------------------------
+# Added to support Okta SSO SAML 2
+#
+#    1) import django3_okta_saml2 views
+#    2) added 'sso/' URL
+#    3) added 'login/' to use SSO route rather than default
+# -----------------------------------------------------------------------------
+
+import django3_okta_saml2.views
+
+# Prepend BASE_PATH
+urlpatterns = [
+    path('sso/', include('django3_okta_saml2.urls')),
+    path('login/', django3_okta_saml2.views.signin, name='login'),
+    path('{}'.format(settings.BASE_PATH), include(_patterns))
+]
+```
 
