@@ -36,7 +36,7 @@ REMOTE_AUTH_DEFAULT_PERMISSIONS as described in the online docs.
 Next you will need to configure this plugin, provding your specific
 configuraiton values as described in
 [django3-okta-saml2](https://github.com/jeremyschulman/django3-okta-saml2)
-repo.
+repo, for example:
 
 ```python
 PLUGINS = ['django3_saml2_nbplugin']
@@ -83,3 +83,17 @@ urlpatterns = [
 ]
 ```
 
+# Using a Reverse-Proxy Approach
+
+A recommended approach is to **NOT** directly integrate SSO into Netbox but
+rather perform this functionality using a reverse-proxy that sets the HTTP
+header as
+[documented](https://netbox.readthedocs.io/en/stable/configuration/optional-settings/).
+I have not yet done this, so I cannot qualify if the following links will work;
+but it is on my TODO.  Also note that this approach uses OpenID Connect
+protocol (OIDC) and not SAML2.
+
+  * [Overview NGINX as an API Gateway for SSO](https://www.okta.com/integrations/nginx-as-api-gateway/)
+  * [NXIGX with OIDC](https://github.com/zmartzone/lua-resty-openidc)
+  * [Apache with OIDC](https://github.com/zmartzone/mod_auth_openidc)
+ 
