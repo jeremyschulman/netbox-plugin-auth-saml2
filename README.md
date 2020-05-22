@@ -6,7 +6,13 @@ variables defined in the configuration.py file, as described here:
 https://netbox.readthedocs.io/en/stable/configuration/optional-settings/
 
 This repository provides a Netbox plugin that can be used to integrate with a SAML SSO system,
-such as Okta.
+such as Okta.  
+
+*Note that the approach in this repo requires you to make a direct modification
+to the netbox/urls.py file.  If you want to avoid this small change, you could
+try a recommended approach of using a reverse-proxy webserver to perform the
+SSO auth rather than directly integrating with Netbox (see notes below for
+links.)*
 
 ## System Requirements
 
