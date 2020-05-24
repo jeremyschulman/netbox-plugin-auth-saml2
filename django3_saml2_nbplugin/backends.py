@@ -25,6 +25,7 @@ class SAML2DottedEmailUserBackend(RemoteUserBackend):
             user.first_name, user.last_name = map(str.title, name.split('.'))
             user.save()
 
+        # call Netbox superclass for further processing of REMOTE_AUTH_xxx variables.
         return super().configure_user(request, user)
 
 
