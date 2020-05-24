@@ -83,4 +83,5 @@ class SAML2AttrUserBackend(RemoteUserBackend):
             be_name = self.__class__.__name__
             raise PermissionError(f"SAML2 backend {be_name} missing attribute: {missing_attr}")
 
-        return user
+        # call Netbox superclass for further processing of REMOTE_AUTH_xxx variables.
+        return super().configure_user(request, user)
