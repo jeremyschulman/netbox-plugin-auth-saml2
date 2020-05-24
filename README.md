@@ -85,7 +85,7 @@ urlpatterns = [
 
 If you want to customize the way a User is created, beyond what is provided by the
 Netbox REMOTE_AUTH variables, you can create a custom RemoteBackend class.  There
-an examples provided [SAML2DottedEmailUserBackend](django3_saml2_nbplugin/backends.py).
+an samples provided [backends.py](django3_saml2_nbplugin/backends.py).
 
 # Using a Reverse-Proxy Approach
 
