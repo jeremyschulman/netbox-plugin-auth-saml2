@@ -1,8 +1,12 @@
-import logging
 from django.contrib.auth.models import User
-from utilities.auth_backends import RemoteUserBackend
-from saml2.response import AuthnResponse
 from django.core.handlers.wsgi import WSGIRequest
+from saml2.response import AuthnResponse
+
+# Subclass from the Netbox provided RemoteUserBackend so that we get the
+# benefits of the REMOTE_AUTH_DEFAULT_GROUPS and
+# REMOTE_AUTH_DEFAULT_PERMISSIONS
+
+from utilities.auth_backends import RemoteUserBackend
 
 
 class SAML2DottedEmailUserBackend(RemoteUserBackend):
