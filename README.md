@@ -30,8 +30,8 @@ REMOTE_AUTH_BACKEND = 'utilities.auth_backends.RemoteUserBackend'
 REMOTE_AUTH_AUTO_CREATE_USER = True
 ````
 
-You can also create the other options REMOTE_AUTH_DEFAULT_GROUPS and
-REMOTE_AUTH_DEFAULT_PERMISSIONS as described in the online docs.
+You can also create the other options **REMOTE_AUTH_DEFAULT_GROUPS** and
+**REMOTE_AUTH_DEFAULT_PERMISSIONS** as described in the online docs.
 
 Next you will need to configure this plugin, provding your specific
 configuraiton values as described in
@@ -49,9 +49,6 @@ PLUGINS_CONFIG = {
 
         # Metadata is required, choose either remote url or local file path
         'METADATA_LOCAL_FILE_PATH': '/etc/oktapreview-netbox-metadata.xml',
-
-        # Setting based on Okta app settings for the Netbox chicklet
-        'NAME_ID_FORMAT': "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
     }
 }
 ```
@@ -83,6 +80,12 @@ urlpatterns = [
     path('{}'.format(settings.BASE_PATH), include(_patterns))
 ]
 ```
+
+# Customizing on Create New User Configuration
+
+If you want to customize the way a User is created, beyond what is provided by the
+Netbox REMOTE_AUTH variables, you can create a custom RemoteBackend class.  There
+an examples provided [SAML2DottedEmailUserBackend](django3_saml2_nbplugin/backends.py).
 
 # Using a Reverse-Proxy Approach
 
