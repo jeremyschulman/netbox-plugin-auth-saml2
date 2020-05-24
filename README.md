@@ -30,8 +30,8 @@ REMOTE_AUTH_BACKEND = 'utilities.auth_backends.RemoteUserBackend'
 REMOTE_AUTH_AUTO_CREATE_USER = True
 ````
 
-You can also create the other options REMOTE_AUTH_DEFAULT_GROUPS and
-REMOTE_AUTH_DEFAULT_PERMISSIONS as described in the online docs.
+You can also create the other options **REMOTE_AUTH_DEFAULT_GROUPS** and
+**REMOTE_AUTH_DEFAULT_PERMISSIONS** as described in the online docs.
 
 Next you will need to configure this plugin, provding your specific
 configuraiton values as described in
@@ -49,9 +49,6 @@ PLUGINS_CONFIG = {
 
         # Metadata is required, choose either remote url or local file path
         'METADATA_LOCAL_FILE_PATH': '/etc/oktapreview-netbox-metadata.xml',
-
-        # Setting based on Okta app settings for the Netbox chicklet
-        'NAME_ID_FORMAT': "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
     }
 }
 ```
@@ -70,19 +67,25 @@ You can change (2) the "SSO" URL to be different based on your Okta app configur
 # Added to support Okta SSO SAML 2
 #
 #    1) import django3_okta_saml2 views
-#    2) added 'sso/' URL
-#    3) added 'login/' to use SSO route rather than default
+#    2) added 'sso/' URL for SSO sysytem
+#    3) redirect 'login/' to SSO login route rather than default
 # -----------------------------------------------------------------------------
 
-import django3_okta_saml2.views
+import django3_auth_saml2.views
 
 # Prepend BASE_PATH
 urlpatterns = [
     path('sso/', include('django3_okta_saml2.urls')),
-    path('login/', django3_okta_saml2.views.signin, name='login'),
+    path('login/', RedirectView.as_view(url='/sso/login/')),
     path('{}'.format(settings.BASE_PATH), include(_patterns))
 ]
 ```
+
+# Customizing on Create New User Configuration
+
+If you want to customize the way a User is created, beyond what is provided by the
+Netbox REMOTE_AUTH variables, you can create a custom RemoteBackend class.  There
+an samples provided [backends.py](django3_saml2_nbplugin/backends.py).
 
 # Using a Reverse-Proxy Approach
 
