@@ -84,8 +84,8 @@ urlpatterns = [
 # Customizing on Create New User Configuration
 
 If you want to customize the way a User is created, beyond what is provided by the
-Netbox REMOTE_AUTH variables, you can create a custom RemoteBackend class.  There
-an samples provided [backends.py](django3_saml2_nbplugin/backends.py).
+Netbox REMOTE_AUTH variables, you can create a custom RemoteBackend class.  See
+the samples in [backends.py](django3_saml2_nbplugin/backends.py).
 
 # Using a Reverse-Proxy Approach
 
