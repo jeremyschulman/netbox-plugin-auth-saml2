@@ -70,16 +70,16 @@ You can change (2) the "SSO" URL to be different based on your Okta app configur
 # Added to support Okta SSO SAML 2
 #
 #    1) import django3_okta_saml2 views
-#    2) added 'sso/' URL
-#    3) added 'login/' to use SSO route rather than default
+#    2) added 'sso/' URL for SSO sysytem
+#    3) redirect 'login/' to SSO login route rather than default
 # -----------------------------------------------------------------------------
 
-import django3_okta_saml2.views
+import django3_auth_saml2.views
 
 # Prepend BASE_PATH
 urlpatterns = [
     path('sso/', include('django3_okta_saml2.urls')),
-    path('login/', django3_okta_saml2.views.signin, name='login'),
+    path('login/', RedirectView.as_view(url='/sso/login/')),
     path('{}'.format(settings.BASE_PATH), include(_patterns))
 ]
 ```
