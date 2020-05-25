@@ -8,8 +8,8 @@ https://netbox.readthedocs.io/en/stable/configuration/optional-settings/
 This repository provides a Netbox plugin that can be used to integrate with a SAML SSO system,
 such as Okta.  
 
-*NOTE: This approach uses a reverse-proxy URL rewrite so that the standard Netbox login button will redirect
-the User to the SSO system.  Please refer to the example [nginx.conf](nginx.conf) file*
+*NOTE: This approach uses a reverse-proxy URL rewrite so that the standard Netbox Login will redirect
+the User to the SSO system.  Please refer to the example [nginx.conf](nginx.conf) file.*
 
 ## System Requirements
 
@@ -49,6 +49,17 @@ PLUGINS_CONFIG = {
     }
 }
 ```
+
+# New Plugin URLs
+This plugin will provide two new URLs to Netbox:
+
+`/plugins/sso/login/`<br/>
+This URLs redirects the User login to the SSO system (Okta) for authentication.  This is the URL that needs
+to be used in the reverse-proxy redirect, for examlple see [nginx.conf](nginx.conf#L35).
+<br/>
+`/plugins/sso/acs/`<br/>
+This URLs should be configured into your SSO system as the route to use to single-sign-on the User into Netbox
+after the User has authenticated with the SSO system. 
 
 # Customizing on Create New User Configuration
 
