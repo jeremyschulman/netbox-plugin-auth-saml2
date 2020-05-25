@@ -66,3 +66,10 @@ If you want to customize the way a User is created, beyond what is provided by t
 Netbox REMOTE_AUTH variables, you can create a custom RemoteBackend class.  See
 the samples in [backends.py](django3_saml2_nbplugin/backends.py).
 
+# Using A Reverse Proxy Redirect
+The use of this plugin requires a reverse-proxy URL redirect to override the default Netbox `/login/` URL.  There
+are two notes in this process:
+
+   1.  You MAY need to disable port in redirect depending on your Netbox installation.  If your Netbox server URL
+   does _not_ include a port, then you _must_ disable port redirect.  For example see [nginx.conf](nginx.conf#L19).
+   1.  You MUST add the ULR rewrite for the `/login/` URL to use `/plugins/sso/login/`, for example [nginx.conf](nginx.conf#L35).
