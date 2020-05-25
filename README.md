@@ -56,7 +56,7 @@ This plugin will provide two new URLs to Netbox:
 `/plugins/sso/login/`<br/>
 This URLs redirects the User login to the SSO system (Okta) for authentication.  This is the URL that needs
 to be used in the reverse-proxy redirect, for examlple see [nginx.conf](nginx.conf#L35).
-<br/>
+<br/><br/>
 `/plugins/sso/acs/`<br/>
 This URLs should be configured into your SSO system as the route to use to single-sign-on the User into Netbox
 after the User has authenticated with the SSO system. 
