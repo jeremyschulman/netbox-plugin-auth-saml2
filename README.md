@@ -45,7 +45,7 @@ PLUGINS_CONFIG = {
         'AUTHENTICATION_BACKEND': REMOTE_AUTH_BACKEND,
 
         # Metadata is required, choose either remote url or local file path
-        'METADATA_LOCAL_FILE_PATH': '/etc/oktapreview-netbox-metadata.xml',
+        'METADATA_AUTO_CONF_URL': "https://mycorp.okta.com/app/sadjfalkdsflkads/sso/saml/metadata"
     }
 }
 ```
@@ -62,7 +62,6 @@ This URLs should be configured into your SSO system as the route to use to singl
 after the User has authenticated with the SSO system. 
 
 # Customizing on Create New User Configuration
-
 If you want to customize the way a User is created, beyond what is provided by the
 Netbox REMOTE_AUTH variables, you can create a custom RemoteBackend class.  See
 the samples in [backends.py](django3_saml2_nbplugin/backends.py).
