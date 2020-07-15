@@ -44,6 +44,12 @@ PLUGINS_CONFIG = {
         # Use the Netbox default remote backend
         'AUTHENTICATION_BACKEND': REMOTE_AUTH_BACKEND,
 
+        # Custom URL to validate incoming SAML requests against
+        'ASSERTION_URL': 'https://netbox.company.com',
+
+        # Populates the Issuer element in authn reques e.g defined as "Audience URI (SP Entity ID)" in SSO
+        'ENTITY_ID': 'https://netbox.conpany.com/',
+
         # Metadata is required, choose either remote url or local file path
         'METADATA_AUTO_CONF_URL': "https://mycorp.okta.com/app/sadjfalkdsflkads/sso/saml/metadata"
     }
@@ -57,8 +63,8 @@ This plugin will provide two new URLs to Netbox:
 This URLs redirects the User login to the SSO system (Okta) for authentication.  This is the URL that needs
 to be used in the reverse-proxy redirect, for examlple see [nginx.conf](nginx.conf#L35).
 <br/><br/>
-`/plugins/sso/acs/`<br/>
-This URLs should be configured into your SSO system as the route to use to single-sign-on the User into Netbox
+`/sso/acs/`<br/>
+This URLs should be configured into your SSO system as the route to use to single-sign-on/redirection URL the User into Netbox
 after the User has authenticated with the SSO system. 
 
 # Customizing on Create New User Configuration
