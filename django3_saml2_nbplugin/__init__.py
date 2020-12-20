@@ -24,9 +24,12 @@ class Django3AuthSAML2Plugin(PluginConfig):
     default_settings = {}
 
     @classmethod
-    def validate(cls, user_config, version):
-        super().validate(user_config, version)
-        SAML2_AUTH_CONFIG.update(user_config)
+    def validate(cls, user_config, *args):
+        if len(args) == 1:
+            super().validate(user_config, args[0])
+        else:
+            super().validate(user_config)
 
+        SAML2_AUTH_CONFIG.update(user_config)
 
 config = Django3AuthSAML2Plugin
