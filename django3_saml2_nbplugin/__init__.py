@@ -16,7 +16,7 @@ class Django3AuthSAML2Plugin(PluginConfig):
     name = 'django3_saml2_nbplugin'
     verbose_name = 'Netbox SSO SAML2 plugin'
     description = 'SSO support using SAML 2.0'
-    version = '0.2'
+    version = '2.0'
     author = 'Jeremy Schulman'
     base_url = 'sso'
 

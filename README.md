@@ -11,6 +11,8 @@ such as Okta.
 *NOTE: This approach uses a reverse-proxy URL rewrite so that the standard Netbox Login will redirect
 the User to the SSO system.  Please refer to the example [nginx.conf](nginx.conf) file.*
 
+*NOTE: Netbox plugin for SSO, v2.0+, supports Netbox version 2.9, 2.10.*
+
 ## System Requirements
 
 You will need to install the [django3-auth-saml2](https://github.com/jeremyschulman/django3-auth-saml2)
