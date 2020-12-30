@@ -52,11 +52,16 @@ PLUGINS_CONFIG = {
         # Populates the Issuer element in authn reques e.g defined as "Audience URI (SP Entity ID)" in SSO
         'ENTITY_ID': 'https://netbox.conpany.com/',
 
-        # Metadata is required, choose either remote url or local file path
-        'METADATA_AUTO_CONF_URL': "https://mycorp.okta.com/app/sadjfalkdsflkads/sso/saml/metadata"
+        # Metadata is required, choose either remote url
+        'METADATA_AUTO_CONF_URL': "https://mycorp.okta.com/app/sadjfalkdsflkads/sso/saml/metadata",
+        # or local file path
+        'METADATA_LOCAL_FILE_PATH': '/opt/netbox/saml2.xml',
     }
 }
 ```
+
+Please note that `METADATA_AUTO_CONF_URL` and `METADATA_LOCAL_FILE_PATH` are
+mutually exclusive. Don't use both settings at the same time.
 
 # New Plugin URLs
 This plugin will provide two new URLs to Netbox:
