@@ -8,7 +8,10 @@ from saml2.response import AuthnResponse
 # benefits of the REMOTE_AUTH_DEFAULT_GROUPS and
 # REMOTE_AUTH_DEFAULT_PERMISSIONS
 
-from netbox.authentication import RemoteUserBackend
+try:
+   from netbox.authentication import RemoteUserBackend
+except (ImportError, ModuleNotFoundError):
+    from utilities.auth_backends import RemoteUserBackend
 
 
 class SAML2DottedEmailUserBackend(RemoteUserBackend):
