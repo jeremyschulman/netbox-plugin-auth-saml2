@@ -6,7 +6,7 @@ variables defined in the configuration.py file, as described here:
 https://netbox.readthedocs.io/en/stable/configuration/optional-settings/
 
 This repository provides a Netbox plugin that can be used to integrate with a SAML SSO system,
-such as Okta.  
+such as Okta.
 
 *NOTE: This approach uses a reverse-proxy URL rewrite so that the standard Netbox Login will redirect
 the User to the SSO system.  Please refer to the example [nginx.conf](nginx.conf) file.*
@@ -53,11 +53,44 @@ PLUGINS_CONFIG = {
         # Populates the Issuer element in authn reques e.g defined as "Audience URI (SP Entity ID)" in SSO
         'ENTITY_ID': 'https://netbox.conpany.com/',
 
-        # Metadata is required, choose either remote url or local file path
-        'METADATA_AUTO_CONF_URL': "https://mycorp.okta.com/app/sadjfalkdsflkads/sso/saml/metadata"
+        # Metadata is required, choose either remote url
+        'METADATA_AUTO_CONF_URL': "https://mycorp.okta.com/app/sadjfalkdsflkads/sso/saml/metadata",
+        # or local file path
+        'METADATA_LOCAL_FILE_PATH': '/opt/netbox/saml2.xml',
+
+        # Settings for SAML2CustomAttrUserBackend. Optional.
+        'CUSTOM_ATTR_BACKEND': {
+            # Attribute containing the username. Optional.
+            'USERNAME_ATTR': 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress',
+            # Attribute containing the user's email. Optional.
+            'MAIL_ATTR': 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress',
+            # Attribute containing the user's first name. Optional.
+            'FIRST_NAME_ATTR': 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname',
+            # Attribute containing the user's last name. Optional.
+            'LAST_NAME_ATTR': 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname',
+            # Set to True to always update the user on logon
+            # from SAML attributes on logon. Defaults to False.
+            'ALWAYS_UPDATE_USER': False,
+            # Attribute that contains groups. Optional.
+            'GROUP_ATTR': 'http://schemas.microsoft.com/ws/2008/06/identity/claims/groups',
+            # Dict of user flags to groups.
+            # If the user is in the group then the flag will be set to True. Optional.
+            'FLAGS_BY_GROUP': {
+                'is_staff': 'saml-group1',
+                'is_superuser': 'saml-group2'
+            },
+            # Dict of SAML groups to NetBox groups. Optional.
+            # Groups must be created beforehand in NetBox.
+            'GROUP_MAPPINGS': {
+                'saml-group3': 'netbox-group'
+            }
+        }
     }
 }
 ```
+
+Please note that `METADATA_AUTO_CONF_URL` and `METADATA_LOCAL_FILE_PATH` are
+mutually exclusive. Don't use both settings at the same time.
 
 # New Plugin URLs
 This plugin will provide two new URLs to Netbox:
@@ -68,7 +101,7 @@ to be used in the reverse-proxy redirect, for examlple see [nginx.conf](nginx.co
 <br/><br/>
 `/sso/acs/`<br/>
 This URLs should be configured into your SSO system as the route to use to single-sign-on/redirection URL the User into Netbox
-after the User has authenticated with the SSO system. 
+after the User has authenticated with the SSO system.
 
 # Customizing on Create New User Configuration
 If you want to customize the way a User is created, beyond what is provided by the
