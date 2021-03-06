@@ -119,7 +119,7 @@ are two notes in this process:
 
 Instead of using a reverse proxy redirect, you can add a SSO login button above
 the NetBox login form. This has the added benefit of allowing both local
-and SAML login simultaneously.
+and SAML login options.
 
 Add the following to your configuration.py:
 ```python
