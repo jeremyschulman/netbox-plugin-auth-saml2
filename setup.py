@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='netbox-plugin-auth-saml2',
-    version='2.1',
+    version='2.3',
     description='Netbox plugin for SAML2 auth',
     long_description=long_description,
     long_description_content_type="text/markdown",
