@@ -114,3 +114,15 @@ are two notes in this process:
    1.  You MAY need to disable port in redirect depending on your Netbox installation.  If your Netbox server URL
    does _not_ include a port, then you _must_ disable port redirect.  For example see [nginx.conf](nginx.conf#L19).
    1.  You MUST add the ULR rewrite for the `/login/` URL to use `/plugins/sso/login/`, for example [nginx.conf](nginx.conf#L35).
+
+# Adding a SSO Login Button
+
+Instead of using a reverse proxy redirect, you can add a SSO login button above
+the NetBox login form. This has the added benefit of allowing both local
+and SAML login options.
+
+Add the following to your configuration.py:
+```python
+BANNER_LOGIN = '<a href="/api/plugins/sso/login" class="btn btn-primary btn-block">Login with SSO</a>'
+```
+
