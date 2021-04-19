@@ -11,7 +11,7 @@ such as Okta.
 *NOTE: This approach uses a reverse-proxy URL rewrite so that the standard Netbox Login will redirect
 the User to the SSO system.  Please refer to the example [nginx.conf](nginx.conf) file.*
 
-*NOTE: Netbox plugin for SSO, v2.0+, supports Netbox v2.8, v2.9, 2.10.
+*NOTE: Netbox plugin for SSO, v2.0+, supports Netbox 2.8, 2.9, 2.10, 2.11.
 
 ## System Requirements
 
