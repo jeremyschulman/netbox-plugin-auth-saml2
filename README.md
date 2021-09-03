@@ -11,7 +11,7 @@ such as Okta.
 *NOTE: This approach uses a reverse-proxy URL rewrite so that the standard Netbox Login will redirect
 the User to the SSO system.  Please refer to the example [nginx.conf](nginx.conf) file.*
 
-*NOTE: Netbox plugin for SSO, v2.0+, supports Netbox 2.8, 2.9, 2.10, 2.11.
+*NOTE: Netbox plugin for SSO, v2.0+, supports Netbox 2.8, 2.9, 2.10, 2.11, 3.0.
 
 ## System Requirements
 
@@ -26,6 +26,10 @@ In the `configuration.py` you will need to enable and configure these
 ```python
 REMOTE_AUTH_ENABLED = True
 REMOTE_AUTH_BACKEND = 'utilities.auth_backends.RemoteUserBackend'
+# For v2.8+:
+# REMOTE_AUTH_BACKEND = 'netbox.authentication.RemoteUserBackend'
+# For backends included with this plugin:
+# REMOTE_AUTH_BACKEND = 'django3_saml2_nbplugin.backends.<Backend>'
 REMOTE_AUTH_AUTO_CREATE_USER = True
 ````
 
