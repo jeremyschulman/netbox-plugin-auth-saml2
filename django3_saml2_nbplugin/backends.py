@@ -153,14 +153,21 @@ class SAML2CustomAttrUserBackend(RemoteUserBackend):
                 user.last_name = user_ident[be_settings["LAST_NAME_ATTR"]][0]
             if "MAIL_ATTR" in be_settings:
                 user.email = user_ident[be_settings["MAIL_ATTR"]][0]
-            if "GROUP_ATTR" in be_settings:
-                ident_groups = user_ident[be_settings["GROUP_ATTR"]]
-            else:
-                ident_groups = []
         except KeyError as exc:
             missing_attr = exc.args[0]
             be_name = self.__class__.__name__
             raise PermissionError(f"SAML2 backend {be_name} missing attribute: {missing_attr}")
+
+        ident_groups = []
+        try:
+            if "GROUP_ATTR" in be_settings:
+                ident_groups = user_ident[be_settings["GROUP_ATTR"]]
+        except KeyError:
+            # When we ask IdP to provide groups,
+            # we expect SAML response to include attribute with zero or more groups.
+            # However, IdP may omit the attr altogether instead of providing an empty attr.
+            # Therefore, treat missing groups as empty instead of an error.
+            pass
 
         if "FLAGS_BY_GROUP" in be_settings and "GROUP_ATTR" in be_settings:
             for flag, group_name in be_settings["FLAGS_BY_GROUP"].items():
