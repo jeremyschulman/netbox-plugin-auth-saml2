@@ -63,6 +63,8 @@ PLUGINS_CONFIG = {
 
         # Settings for SAML2CustomAttrUserBackend. Optional.
         'CUSTOM_ATTR_BACKEND': {
+            # See the note below about SAML attributes
+
             # Attribute containing the username. Optional.
             'USERNAME_ATTR': 'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress',
             # Attribute containing the user's email. Optional.
@@ -94,6 +96,15 @@ PLUGINS_CONFIG = {
 
 Please note that `METADATA_AUTO_CONF_URL` and `METADATA_LOCAL_FILE_PATH` are
 mutually exclusive. Don't use both settings at the same time.
+
+## Attributes
+
+Newer versions of `pysaml2` uses an attribute map.
+For example, instead of `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress` in the configuration above, `emailAddress` should be used instead.
+
+See [here](https://github.com/IdentityPython/pysaml2/tree/master/src/saml2/attributemaps) for details.
+
+
 
 # New Plugin URLs
 This plugin will provide two new URLs to Netbox:
