@@ -109,11 +109,11 @@ See [here](https://github.com/IdentityPython/pysaml2/tree/master/src/saml2/attri
 # New Plugin URLs
 This plugin will provide two new URLs to Netbox:
 
-`/plugins/sso/login/`<br/>
+`/api/plugins/sso/login/`<br/>
 This URLs redirects the User login to the SSO system (Okta) for authentication.  This is the URL that needs
 to be used in the reverse-proxy redirect, for examlple see [nginx.conf](nginx.conf#L35).
 <br/><br/>
-`/sso/acs/`<br/>
+`/api/plugins/sso/acs/`<br/>
 This URLs should be configured into your SSO system as the route to use to single-sign-on/redirection URL the User into Netbox
 after the User has authenticated with the SSO system.
 
