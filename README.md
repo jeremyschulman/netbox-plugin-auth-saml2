@@ -13,6 +13,8 @@ the User to the SSO system.  Please refer to the example [nginx.conf](nginx.conf
 
 *NOTE: Netbox plugin for SSO, v2.0+, supports Netbox 2.8, 2.9, 2.10, 2.11, 3.0.
 
+*NOTE: Netbox plugin for SSO, v3.0+, supports Netbox 4.0.
+
 ## System Requirements
 
 You will need to install the [django3-auth-saml2](https://github.com/jeremyschulman/django3-auth-saml2)
@@ -140,4 +142,3 @@ Add the following to your configuration.py:
 ```python
 BANNER_LOGIN = '<a href="/api/plugins/sso/login" class="btn btn-primary btn-block">Login with SSO</a>'
 ```
-

@@ -1,7 +1,8 @@
 from typing import Optional
-from django.contrib.auth.models import User, Group
-from django.core.handlers.wsgi import WSGIRequest
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.core.handlers.wsgi import WSGIRequest
+from netbox.authentication import Group
 from saml2.response import AuthnResponse
 
 # Subclass from the Netbox provided RemoteUserBackend so that we get the

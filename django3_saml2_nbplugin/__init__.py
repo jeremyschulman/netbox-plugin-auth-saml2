@@ -8,7 +8,7 @@ Do not try to modify django.conf.settings.SAML2_AUTH_CONFIG since by the time
 this plugin is invoked the settings is already configured, and if you try
 settings.configure(SAML2_AUTH_CONFIG=user_config) an exception will be raised.
 """
-from extras.plugins import PluginConfig
+from netbox.plugins import PluginConfig
 from django3_auth_saml2.config import SAML2_AUTH_CONFIG
 
 
